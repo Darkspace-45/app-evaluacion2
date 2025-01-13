@@ -15,11 +15,26 @@ export default function OperacionesScreen({ navigation }: any) {
             return;
         }
 
-        if (cantidadNumero < 0) {
+        if (cantidadNumero < 1) {
             Alert.alert('Error', 'La cantidad no puede ser negativa.');
             return;
         }
 
+        if (cantidadNumero < 1 || cantidadNumero > 20) {
+            Alert.alert(
+                'Confirmar Operación',
+                'El monto está fuera de los valores recomendados (entre $1 y $20). ¿Desea continuar?',
+                [
+                    { text: 'Cancelar', style: 'cancel' },
+                    { text: 'Continuar', onPress: () => realizarOperacion(cantidadNumero) }
+                ]
+            );
+        } else {
+            realizarOperacion(cantidadNumero);
+        }
+    };
+
+    const realizarOperacion = (cantidadNumero: number) => {
         const nuevoRegistro = { idOperacion, tipoOperacion, cantidad: cantidadNumero };
         setRegistro([...registro, nuevoRegistro]);
         Alert.alert('Éxito', 'Operación realizada con éxito.');

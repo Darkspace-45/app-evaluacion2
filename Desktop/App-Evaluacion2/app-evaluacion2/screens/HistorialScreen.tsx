@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, FlatList, Modal, TouchableOpacity, Image } from 'react-native';
 
+const TransactionItem = ({ item, onSelect }: any) => (
+    <TouchableOpacity style={styles.item} onPress={() => onSelect(item)}>
+        <Text style={styles.itemType}>{item.tipoOperacion}</Text>
+        <Text style={styles.itemText}>{item.descripcion}</Text>
+        <Text>{`Cantidad: ${item.cantidad}`}</Text>
+        <Text>{`Precio: ${item.precio}`}</Text> 
+    </TouchableOpacity>
+);
+
 export default function HistorialScreen({ route }: any) {
     const { transactions } = route.params;
-
     const [selectedItem, setSelectedItem] = useState<any | null>(null);
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -24,11 +32,7 @@ export default function HistorialScreen({ route }: any) {
                 data={transactions}
                 keyExtractor={(item) => item.idOperacion}
                 renderItem={({ item }) => (
-                    <TouchableOpacity style={styles.item} onPress={() => handleSelectItem(item)}>
-                        <Text style={styles.itemType}>{item.tipoOperacion}</Text>
-                        <Text style={styles.itemText}>{item.descripcion}</Text>
-                        <Text>{`Cantidad: ${item.cantidad}`}</Text>
-                    </TouchableOpacity>
+                    <TransactionItem item={item} onSelect={handleSelectItem} />
                 )}
             />
             <Modal
@@ -47,6 +51,7 @@ export default function HistorialScreen({ route }: any) {
                             style={styles.modalImage}
                         />
                         <Text>{`Cantidad: ${selectedItem?.cantidad}`}</Text>
+                        <Text>{`Precio: $${selectedItem?.precio}`}</Text>
                         <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
                             <Text style={styles.closeButtonText}>Cerrar</Text>
                         </TouchableOpacity>
