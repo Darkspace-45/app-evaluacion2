@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "app-evaluacion2",
+    "slug": "app-evaluacion2",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/img/tiempo-de-carga.gif",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/img/tiempo-de-carga.gif",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/img/tiempo-de-carga.gif",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
